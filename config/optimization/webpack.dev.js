@@ -25,7 +25,7 @@ module.exports = merge(webpackCommonConf, {
           loader: "babel-loader",
           options: {
             presets: ["@babel/preset-env"],
-            cacheDirectory: true // 启用缓存
+            cacheDirectory: true, // 启用缓存
           },
         },
       },
@@ -37,6 +37,7 @@ module.exports = merge(webpackCommonConf, {
       directory: distPath,
     },
     port: 8080,
+    // hot: false, // 启用热模块替换
     // progress: true,  // 显示打包的进度条
     // open: true,  // 自动打开浏览器
     compress: true, // 启动 gzip 压缩

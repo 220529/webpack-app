@@ -4,7 +4,7 @@ moment.locale("zh-cn");
 console.log("moment", moment.locale());
 console.log("date", moment().format("ll"));
 
-console.log("index page");
+console.log("index page...111211");
 
 import $ from "jquery";
 $(document).ready(function () {
@@ -22,3 +22,18 @@ $(document).ready(function () {
   // 修改文档标题
   $("title").text("Webpack jQuery Example");
 });
+
+import { sum } from "./math";
+
+const sumRes = sum(10, 20);
+console.log("sumRes", sumRes);
+
+console.log("module", module.hot);
+
+// 增加，开启热更新之后的代码逻辑
+if (module.hot) {
+  module.hot.accept(["./math"], () => {
+    const sumRes = sum(10, 30);
+    console.log("sumRes in hot", sumRes);
+  });
+}
