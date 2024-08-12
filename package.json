@@ -6,6 +6,12 @@
   "scripts": {
     "dev": "webpack serve --config config/base/webpack.dev.js",
     "build": "webpack --config config/base/webpack.prod.js",
+    "dev:extract": "webpack serve --config config/extract/webpack.dev.js",
+    "build:extract": "webpack --config config/extract/webpack.prod.js",
+    "dev:multi": "webpack serve --config config/multi/webpack.dev.js",
+    "build:multi": "webpack --config config/multi/webpack.prod.js",
+    "dev:chunk": "webpack serve --config config/chunk/webpack.dev.js",
+    "build:chunk": "webpack --config config/chunk/webpack.prod.js",
     "dev-without-dev-server": "webpack --config config/base/webpack.dev.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,11 +30,14 @@
     "autoprefixer": "^10.4.20",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^7.1.2",
+    "css-minimizer-webpack-plugin": "^7.0.0",
     "html-webpack-plugin": "^5.6.0",
     "http-proxy-middleware": "^3.0.0",
     "less-loader": "^12.2.0",
+    "mini-css-extract-plugin": "^2.9.0",
     "postcss-loader": "^8.1.1",
     "style-loader": "^4.0.0",
+    "terser-webpack-plugin": "^5.3.10",
     "webpack": "^5.93.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.0.4"
