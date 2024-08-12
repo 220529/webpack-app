@@ -25,14 +25,50 @@ module.exports = merge(webpackCommonConf, {
         test: /\.less$/i,
         use: [MiniCssExtractPlugin.loader, "css-loader", "less-loader"],
       },
+      {
+        test: /\.m?js$/,
+        include: srcPath,
+        exclude: /(node_modules|bower_components)/,
+        use: [
+          {
+            loader: "thread-loader", // 将构建任务分配到多个子进程中
+            options: {
+              // 配置线程池
+              workers: 2, // 可选，指定线程数，默认为 CPU 核心数
+            },
+          },
+          {
+            loader: "babel-loader",
+            options: {
+              presets: ["@babel/preset-env"],
+              cacheDirectory: true, // 启用缓存
+            },
+          },
+        ],
+      },
     ],
   },
   optimization: {
+    minimize: true, // 启用代码压缩
     minimizer: [
       // 在 webpack@5 中，你可以使用 `...` 语法来扩展现有的 minimizer（即 `terser-webpack-plugin`），将下一行取消注释
       // `...`,
       new CssMinimizerPlugin(), // 优化和压缩 CSS。
-      new TerserPlugin(), // 压缩 JavaScript。
+      new TerserPlugin({
+        // 压缩 JavaScript
+        terserOptions: {
+          compress: {
+            drop_console: true, // 移除所有console相关代码
+            drop_debugger: true, // 移除自动断点功能
+            pure_funcs: ["console.log", "console.error"], // 配置移除指定的指令
+          },
+          format: {
+            comments: false, // 删除注释
+          },
+        },
+        extractComments: false, // 是否将注释剥离到单独的文件中
+        parallel: true, // 使用多进程并发运行以提高构建速度
+      }),
     ],
     // 分割代码块
     // splitChunks: {
@@ -78,6 +114,6 @@ module.exports = merge(webpackCommonConf, {
     new webpack.IgnorePlugin({
       resourceRegExp: /^\.\/locale$/,
       contextRegExp: /moment$/,
-    })
+    }),
   ],
 });

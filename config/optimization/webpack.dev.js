@@ -17,6 +17,18 @@ module.exports = merge(webpackCommonConf, {
         test: /\.less$/i,
         use: ["style-loader", "css-loader", "less-loader"],
       },
+      {
+        test: /\.m?js$/,
+        include: srcPath,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+            cacheDirectory: true // 启用缓存
+          },
+        },
+      },
     ],
   },
   devServer: {

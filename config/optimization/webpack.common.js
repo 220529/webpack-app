@@ -11,7 +11,7 @@ module.exports = {
     jquery: 'jQuery', // 将 jquery 标记为外部依赖
   },
   module: {
-    noParse: /jquery/,
+    noParse: /jquery/, // 引入，但是不打包，不加会报错
     rules: [
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
@@ -24,19 +24,7 @@ module.exports = {
         generator: {
           filename: "images/[name][ext][query]", // 输出图片文件的路径
         },
-      },
-      {
-        test: /\.m?js$/,
-        include: srcPath,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: ["@babel/preset-env"],
-            cacheDirectory: true // 启用缓存
-          },
-        },
-      },
+      }
     ],
   },
   plugins: [
