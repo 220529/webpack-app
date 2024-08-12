@@ -7,7 +7,11 @@ module.exports = {
     index: path.join(srcPath, "index"),
     // other: path.join(srcPath, "other"),
   },
+  externals: {
+    jquery: 'jQuery', // 将 jquery 标记为外部依赖
+  },
   module: {
+    noParse: /jquery/,
     rules: [
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
