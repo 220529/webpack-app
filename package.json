@@ -14,6 +14,8 @@
     "build:multi": "webpack --config config/multi/webpack.prod.js",
     "dev:chunk": "webpack serve --config config/chunk/webpack.dev.js",
     "build:chunk": "webpack --config config/chunk/webpack.prod.js",
+    "dev:optimization": "webpack serve --config config/optimization/webpack.dev.js",
+    "build:optimization": "webpack --config config/optimization/webpack.prod.js",
     "dev-without-dev-server": "webpack --config config/base/webpack.dev.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -48,6 +50,7 @@
     "webpack-dev-server": "^5.0.4"
   },
   "dependencies": {
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "moment": "^2.30.1"
   }
 }
