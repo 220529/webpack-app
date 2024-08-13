@@ -24,6 +24,18 @@ module.exports = {
                 },
               ],
             ],
+            plugins: [
+              [
+                "@babel/plugin-transform-runtime",
+                {
+                  absoluteRuntime: false,
+                  corejs: 3,
+                  helpers: true,
+                  regenerator: true,
+                  useESModules: false,
+                },
+              ],
+            ],
             cacheDirectory: true, // 启用缓存
           },
         },
