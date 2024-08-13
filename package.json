@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "babel": "babel src-babel --out-dir dist",
     "dev": "webpack serve --config config/base/webpack.dev.js",
     "build": "webpack --config config/base/webpack.prod.js",
     "dev:babel": "webpack serve --config config/babel/webpack.dev.js",
@@ -34,12 +35,15 @@
   },
   "homepage": "https://github.com/220529/webpack-app#readme",
   "devDependencies": {
+    "@babel/cli": "^7.24.8",
     "@babel/core": "^7.25.2",
+    "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.25.3",
     "@babel/preset-react": "^7.24.7",
     "autoprefixer": "^10.4.20",
     "babel-loader": "^9.1.3",
     "clean-webpack-plugin": "^4.0.0",
+    "core-js": "^3.38.0",
     "css-loader": "^7.1.2",
     "css-minimizer-webpack-plugin": "^7.0.0",
     "html-webpack-plugin": "^5.6.0",

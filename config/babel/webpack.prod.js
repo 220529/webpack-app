@@ -13,36 +13,17 @@ module.exports = merge(webpackCommonConf, {
   output: {
     filename: "[name].[contenthash:8].js", // 打包代码时，加上 hash 戳
     path: distPath,
-    // publicPath: 'http://cdn.abc.com'  // 修改所有静态文件 url 的前缀（如 cdn 域名），这里暂时用不到
-  },
-  module: {
-    rules: [
-      {
-        test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
-      },
-      {
-        test: /\.less$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "less-loader"],
-      },
-    ],
   },
   optimization: {
     minimizer: [
-      // 在 webpack@5 中，你可以使用 `...` 语法来扩展现有的 minimizer（即 `terser-webpack-plugin`），将下一行取消注释
-      // `...`,
-      new CssMinimizerPlugin(), // 优化和压缩 CSS。
       new TerserPlugin(), // 压缩 JavaScript。
     ],
     // 分割代码块
     splitChunks: {
+      // initial 入口chunk，对于异步导入的文件不处理
+      // async 异步chunk，只对异步导入的文件处理
+      // all 全部chunk
       chunks: "all",
-      /**
-               * initial 入口chunk，对于异步导入的文件不处理
-                  async 异步chunk，只对异步导入的文件处理
-                  all 全部chunk
-               */
-
       // 缓存分组
       cacheGroups: {
         // 第三方模块
@@ -66,13 +47,5 @@ module.exports = merge(webpackCommonConf, {
   },
   plugins: [
     new CleanWebpackPlugin(), // 会默认清空 output.path 文件夹
-    new webpack.DefinePlugin({
-      // window.ENV = 'production'
-      ENV: JSON.stringify("production"),
-    }),
-    // 抽离 css 文件
-    new MiniCssExtractPlugin({
-      filename: "css/main.[contentHash:8].css",
-    }),
   ],
 });
