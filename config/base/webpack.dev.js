@@ -29,10 +29,6 @@ module.exports = merge(webpackCommonConf, {
           changeOrigin: true,
           // 如果目标服务器是 HTTPS 但没有有效证书，则设置为 false
           secure: false,
-          // 可选：对请求路径进行重写
-          // pathRewrite: {
-          //   "^/api": "", // 将请求路径中的 /api 替换为空
-          // },
         })
       );
 
