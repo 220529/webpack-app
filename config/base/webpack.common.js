@@ -1,6 +1,8 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { srcPath, distPath } = require("./paths");
+const InsertScriptPlugin = require("./insert-script");
+const RunShellScriptPlugin = require("./run-shell");
 
 module.exports = {
   entry: path.join(srcPath, "index"),
@@ -38,6 +40,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(srcPath, "templates", "index.html"),
       filename: "index.html",
+    }),
+    // new HelloWorldPlugin({ options: true }),
+    new InsertScriptPlugin({
+      script: 'console.log("Hello from inserted script!");',
+    }),
+    new RunShellScriptPlugin({
+      scriptPath: "./log.sh", // 指定你的 shell 脚本路径
     }),
   ],
 };

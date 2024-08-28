@@ -29,7 +29,7 @@ function createFetch(params) {
       console.log("fetch", e);
     });
 }
-// createFetch()
+createFetch();
 
 // 引入第三方
 import _ from "lodash";
@@ -38,7 +38,7 @@ console.log(_.each);
 async function createComponenets() {
   const element = document.createElement("div");
   const button = document.createElement("button");
-  button.innerHTML = "Click me and look at the console!";
+  button.innerHTML = "Click me and look at the console!!!";
   button.onclick = async () => {
     import(/* webpackChunkName: "print" */ "./print").then((module) => {
       const print = module.default;
@@ -46,8 +46,8 @@ async function createComponenets() {
     });
   };
 
-//   const _ = await import("lodash");
-//   element.innerHTML = _.default.join(["Hello", "webpack"], " ");
+  // const _ = await import("lodash");
+  // element.innerHTML = _.default.join(["Hello", "webpack"], " ");
 
   element.appendChild(button);
 
