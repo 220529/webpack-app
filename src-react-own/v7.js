@@ -303,8 +303,12 @@ const Didact = {
 function Counter() {
   const [state, setState] = Didact.useState(1);
 
-  Didact.useEffect(() => {
-    console.log("useEffect...", state);
+  useEffect(() => {
+    console.log("useEffect...");
+  }, []);
+
+  useEffect(() => {
+    console.log("useEffect.state", state);
   }, [state]);
 
   return <p onClick={() => setState((c) => c + 1)}>Count: {state}</p>;
