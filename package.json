@@ -20,6 +20,7 @@
     "dev:react": "webpack serve --config config/react/webpack.dev.js",
     "dev:react:dll": "webpack --config config/react/webpack.dll.js",
     "build:react": "webpack --config config/react/webpack.prod.js",
+    "dev:react-own": "webpack serve --config config/react-own/webpack.dev.js",
     "dev-without-dev-server": "webpack --config config/base/webpack.dev.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
