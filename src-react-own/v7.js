@@ -301,17 +301,17 @@ const Didact = {
 
 /** @jsx Didact.createElement */
 function Counter() {
-  const [state, setState] = Didact.useState(1);
+  const [state, setState] = useState(1);
 
   useEffect(() => {
-    console.log("useEffect...");
+    const timer = setInterval(() => {
+      setState((state) => state + 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
   }, []);
 
-  useEffect(() => {
-    console.log("useEffect.state", state);
-  }, [state]);
-
-  return <p onClick={() => setState((c) => c + 1)}>Count: {state}</p>;
+  return <span onClick={() => setState((c) => c + 1)}>Count: {state}</span>;
 }
 
 const element = <Counter />;

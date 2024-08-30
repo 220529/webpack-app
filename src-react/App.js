@@ -1,25 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 const App = () => {
-  // 使用 useState 钩子来管理计数器状态
-  const [count, setCount] = useState(0);
-
-  // 处理加法操作
-  const handleIncrement = () => {
-    setCount(count + 1);
-  };
+  const [state, setState] = useState(1);
 
   useEffect(() => {
-    console.log("useEffect...");
-  }, [])
+    const timer = setInterval(() => {
+      setState((state) => state + 1);
+    }, 1000);
 
-  return (
-    <div>
-      {/* <span>React Hook 示例</span> */}
-      <p>当前计数: {count}</p>
-      <button onClick={handleIncrement}>增加</button>
-    </div>
-  );
+    return () => clearInterval(timer);
+  }, []);
+
+  return <span onClick={() => setState((c) => c + 1)}>Count: {state}</span>;
 };
 
 export default App;
